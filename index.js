@@ -1,6 +1,7 @@
 let url = `https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/births/${'06'}/${'25'}`;
 let birthdays = document.getElementById('birthdays')
 let lista = document.querySelector('ul')
+let edad = document.getElementById('edad')
 
 const listEsp = document.createElement("li")
 const link = document.createElement("a")
@@ -12,6 +13,8 @@ lista.appendChild(listEsp)
 function alehop(){
     birthdays.style.visibility = 'visible'
 }
+
+
 
 async function birthday() {
     let response = await fetch(url,

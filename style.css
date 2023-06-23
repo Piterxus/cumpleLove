@@ -4,6 +4,7 @@ body{
 
 a{
     text-decoration: none;
+    color: black;
 }
 
 #birthdays{
@@ -16,4 +17,20 @@ ul {
 
 li{
     margin: 15px;
+}
+
+.love{
+    display: flex;
+}
+
+.love img {
+    filter: drop-shadow(10px 10px 4px #4444dd);
+}
+
+.description{
+    margin-left:100px
+}
+
+span{
+    margin-left: 10px;
 }
