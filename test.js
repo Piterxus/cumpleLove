@@ -1,3 +1,6 @@
+let add = document.getElementById('add')
+let input = document.querySelector('input')
+
 function calcularAniosPasados(desdeFecha) {
     const fechaActual = new Date();
     const fechaPasada = new Date(desdeFecha);
@@ -16,6 +19,10 @@ function calcularAniosPasados(desdeFecha) {
     return aniosPasados;
 }
 
+function afegir(){
+    add.innerText+=`\n ${input.value} \n`
+    input.value = ''
+}
 
 
 edad.innerText = calcularAniosPasados("1980-06-25")

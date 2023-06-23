@@ -7,7 +7,7 @@ const listEsp = document.createElement("li")
 const link = document.createElement("a")
 link.href = './test.html'
 listEsp.appendChild(link)
-link.textContent = 'LA MILLOR DE TOTES! <= (PUNTXA PER CONEIXERLA)'
+link.innerHTML = 'LA MILLOR DE TOTES! ⇐ (PUNTXA PER CONEIXERLA)'
 lista.appendChild(listEsp)
 
 function alehop(){
