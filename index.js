@@ -3,6 +3,8 @@ let birthdays = document.getElementById('birthdays')
 let lista = document.querySelector('ul')
 let edad = document.getElementById('edad')
 
+
+
 const listEsp = document.createElement("li")
 const link = document.createElement("a")
 link.href = './test.html'
@@ -26,13 +28,13 @@ async function birthday() {
         }
     );
     const data = await response.json()
-    console.log(data.births)
+    // console.log(data.births)
     const list = data.births
     for (let element of list) {
         const li = document.createElement("li")
         li.textContent = element.text
         lista.appendChild(li)
-        console.log(element.text)
+    
     }
 
     return data

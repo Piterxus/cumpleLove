@@ -1,21 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <title>Aniversari del meu amor!</title>
 </head>
-<body>
-  <strong><p>Avui és l'aniversari d'algú molt especial (Clica el botó per saber qui és):</p></strong>
-   <button onclick="alehop()">QUI SERÁ?</button>
 
-   <div id="birthdays">
-    <h2>De tota esta gent!:</h2>
-    <ul>
-    
-    </ul>
-   </div>
+<body>
+    <strong>
+        <p>Avui és l'aniversari d'algú molt especial (Clica el botó per saber qui és):</p>
+    </strong>
+    <div id="fire"></div>
+    <button onclick="alehop()">QUI SERÁ?</button>
+
+    <div id="birthdays">
+        <h2>De tota esta gent!:</h2>
+        <ul>
+
+        </ul>
+    </div>
+   
     <script src="./index.js"></script>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    // import {afegir} from './test.js'
+    let fire = document.getElementById('fire')
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js";
+    	import { getDatabase, ref, child, get, set, onValue, push } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyC4AKC6DMvts-1h3iw5h0ZSMhdvfawVAlQ",
+        authDomain: "happy-birthday-my-love-9ce8f.firebaseapp.com",
+        projectId: "happy-birthday-my-love-9ce8f",
+        storageBucket: "happy-birthday-my-love-9ce8f.appspot.com",
+        messagingSenderId: "1092614073633",
+        appId: "1:1092614073633:web:4a9db1cd494c3aab872260",
+        measurementId: "G-LNL3QX0YRF",
+        databaseURL: "https://happy-birthday-my-love-9ce8f-default-rtdb.europe-west1.firebasedatabase.app",
+    };
+
+    
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const database = getDatabase(app);
+    
+    // console.log(database)
+  
+    
+    const dbRef = ref(database);
+    // const dbRefR = ref(database,'/mensajes');
+    // const dbRefW = ref(database, '/mensajes')
+
+    function writeUserData(userId, name, email, imageUrl) {
+            // const db = getDatabase();
+            set(ref(database, 'users/' + userId), {
+                username: name,
+                email: email,
+                profile_picture: imageUrl
+            });
+        }
+
+        
+            function messages(id, note) {
+                // const db = getDatabase();
+                set(ref(database, 'messages/' + (id+1)), {
+                    message: note,
+                  
+                });
+            }
+
+        // writeUserData(2, 'aaa', 'picggdf@f.es',' ./ffa')
+        // messages(0, 'test')
+
+
+
+    // // Obtener datos en tiempo real (escucha de eventos)
+    onValue(dbRef, snapshot => {
+        const data = snapshot.val();
+        console.log('Datos actualizados:', data.messages);
+        
+    }, error => {
+        console.error('Error al obtener los datos:', error);
+    });
+    // dbRefR.once('value')
+    //     .then(snapshot => {
+    //         const mensajes = snapshot.val();
+    //         console.log('Datos obtenidos:', mensajes);
+
+    //     })
+    //     .catch(error => {
+    //         console.error('Error al obtener los datos:', error);
+    //     });
+
+
+    // const dbRef = ref(getDatabase());
+    // get(child(dbRef, `users/${userId}`)).then((snapshot) => {
+    //     if (snapshot.exists()) {
+    //         console.log(snapshot.val());
+    //     } else {
+    //         console.log("No data available");
+    //     }
+    // }).catch((error) => {
+    //     console.error(error);
+    // });
+
+    
+
+</script>
 </body>
+
 </html>
