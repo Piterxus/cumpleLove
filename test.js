@@ -24,22 +24,51 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const database = getDatabase(app);
 const dbRef = ref(database);
-let contId = 0;
-function messages(id, note) {
+const notes = document.getElementById('notes')
+
+// function messages(id, note) {
+//     // const db = getDatabase();
+//     set(ref(database, 'messages/' + (id + 1)), {
+//         message: note,
+
+//     });
+// }
+function messages(note) {
     // const db = getDatabase();
-    set(ref(database, 'messages/' + (id + 1)), {
+    push(ref(database, 'messages/'), {
         message: note,
 
     });
 }
 
-onValue(dbRef, snapshot => {
-    const data = snapshot.val();
-    console.log('Datos actualizados:', data.messages);
 
-}, error => {
-    console.error('Error al obtener los datos:', error);
-});
+// onValue(dbRef, snapshot => {
+//     const data = snapshot.val();
+//     let avore = Object.values(data.messages)
+
+//     console.log('Datos actualizados:', data.messages);
+//     console.log('values: ', avore)
+//     console.log(notes)
+
+//     for (let element of avore){
+        
+//         const li = document.createElement("li")
+//         li.textContent = element.message
+//         notes.appendChild(li)
+//     }
+
+//     // for (let element of avore){
+//     //     console.log('açí: ', element.message)
+//     //     add.innerHTML += '<br>' + element. message + '<br>'
+//     // }
+
+
+// }, error => {
+//     console.error('Error al obtener los datos:', error);
+// });
+
+
+
 
 
 let add = document.getElementById('add')
@@ -64,9 +93,10 @@ function calcularAniosPasados(desdeFecha) {
 }
 
 function afegir() {
-    add.innerText += `\n ${input.value} \n`
-       messages(contId, input.value)
-       contId++
+    // add.innerText += `\n ${input.value} \n`
+       messages(input.value)
+    // li.textContent = input.value
+    // notes.appendChild(li)
     // return input.value
     input.value = ''
 }

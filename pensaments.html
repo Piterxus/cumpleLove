@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniversari del meu amor!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="pensamentes">
+        <ul id="notes"></ul>
+    </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        // import {afegir} from './test.js'
+        let fire = document.getElementById('fire')
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics.js";
+        	import { getDatabase, ref, child, get, set, onValue, push } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+    
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyC4AKC6DMvts-1h3iw5h0ZSMhdvfawVAlQ",
+            authDomain: "happy-birthday-my-love-9ce8f.firebaseapp.com",
+            projectId: "happy-birthday-my-love-9ce8f",
+            storageBucket: "happy-birthday-my-love-9ce8f.appspot.com",
+            messagingSenderId: "1092614073633",
+            appId: "1:1092614073633:web:4a9db1cd494c3aab872260",
+            measurementId: "G-LNL3QX0YRF",
+            databaseURL: "https://happy-birthday-my-love-9ce8f-default-rtdb.europe-west1.firebasedatabase.app",
+        };
+    
+        
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        
+        
+      
+        
+        const dbRef = ref(database);
+       
+
+    
+    
+    
+        // // Obtener datos en tiempo real (escucha de eventos)
+onValue(dbRef, snapshot => {
+const data = snapshot.val();
+let avore = Object.values(data.messages)
+
+console.log('Datos actualizados:', data.messages);
+console.log('values: ', avore)
+console.log(notes)
+
+for (let element of avore){
+
+const li = document.createElement("li")
+li.textContent = element.message
+notes.appendChild(li)
+}
+
+// for (let element of avore){
+// console.log('açí: ', element.message)
+// add.innerHTML += '<br>' + element. message + '<br>'
+// }
+
+
+}, error => {
+console.error('Error al obtener los datos:', error);
+});
+    
+        
+    
+    </script>
+</body>
+</html>
